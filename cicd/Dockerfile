@@ -1,42 +1,18 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: hello-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: hello-app
-  template:
-    metadata:
-      labels:
-        app: hello-app
-    spec:
-      containers:
-        - name: hello-app
-          image: hello-app:java21
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8080
+# ---------- Build stage ----------
+FROM maven:3.9.6-eclipse-temurin-21 AS builder
+WORKDIR /app
 
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
+COPY pom.xml .
+RUN mvn -B dependency:go-offline
 
-          readinessProbe:
-            httpGet:
-              path: /actuator/health/readiness
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-          livenessProbe:
-            httpGet:
-              path: /actuator/health/liveness
-              port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 10
+# ---------- Runtime stage ----------
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+
+COPY --from=builder /app/target/*.jar app.jar
+
+EXPOSE 9091
+ENTRYPOINT ["java","-jar","app.jar"]
