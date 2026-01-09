@@ -17,7 +17,7 @@ spec:
           image: IMAGE_PLACEHOLDER       # Replace with chinmay277/demo1:7 or let pipeline replace
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 9091
           resources:
             requests:
               memory: "256Mi"
@@ -28,13 +28,13 @@ spec:
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
-              port: 8080
+              port: 9091
             initialDelaySeconds: 10
             periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
-              port: 8080
+              port: 9091
             initialDelaySeconds: 30
             periodSeconds: 10
       imagePullSecrets:
