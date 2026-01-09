@@ -25,6 +25,11 @@ public class Hello {
         return new String();
     }
     
+    @GetMapping("path3")
+    public String getMethodName3(@RequestParam String param) {
+        return new String();
+    }
+    
 
 
 }
