@@ -38,4 +38,4 @@ spec:
             initialDelaySeconds: 30
             periodSeconds: 10
       imagePullSecrets:
-        - name: dockerhub
+        - name: dockerhub-creds
