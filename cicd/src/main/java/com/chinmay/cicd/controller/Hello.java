@@ -15,10 +15,6 @@ public class Hello {
 
     }
 
-    @GetMapping("path")
-    public String getMethodName(@RequestParam String param) {
-        return new String("testing webhook push");
-    }
     
 
 
