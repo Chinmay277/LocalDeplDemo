@@ -15,21 +15,11 @@ public class Hello {
 
     }
 
-    @GetMapping("path")
-    public String getMethodName(@RequestParam String param) {
-        return new String("testing webhook push");
-    }
-    
-    @GetMapping("2")
-    public String getMethodName2(@RequestParam String param) {
+    @GetMapping("real")
+    public String getMethodNames(@RequestParam String param) {
         return new String();
     }
-    
-    @GetMapping("path3")
-    public String getMethodName3(@RequestParam String param) {
-        return new String();
-    }
-    
+        
 
 
 }
