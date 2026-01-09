@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "dockerhubuser/cicd-app"
+        DOCKER_IMAGE = "chinmay277/demo1"
         DOCKER_TAG = "${BUILD_NUMBER}"
     }
 
