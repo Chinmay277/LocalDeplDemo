@@ -20,6 +20,11 @@ public class Hello {
         return new String("testing webhook push");
     }
     
+    @GetMapping("2")
+    public String getMethodName2(@RequestParam String param) {
+        return new String();
+    }
+    
 
 
 }
