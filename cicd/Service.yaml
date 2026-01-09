@@ -8,5 +8,5 @@ spec:
     app: hello-app
   ports:
     - port: 9091          # Service port
-      targetPort: 8080    # Container port
+      targetPort: 9091    # Container port
       nodePort: 30091     # Fixed NodePort (optional but explicit)
